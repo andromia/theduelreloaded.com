@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    {% if current_user.is_anonymous %}
+    <h1>Welcome</h1>
+    {% else %}
+    <h1>{{ 'Hi, %s' % current_user.username }}</h1>
+    {% endif %}
+
+    <h1>{{ title }}</h1>
+    <p><a href="https://discord.gg/8d3HtCa">Join the Discord</a> for live updates and a more direct access to
+        the staff and community.
+    </p>
+    <p><em>The Duel Reloaded</em> is a game inspired by <a href="https://en.wikipedia.org/wiki/GunZ:_The_Duel">Gunz: The Duel</a>.
+        K-Style was an unintended combat system that launched a unique, and now nostalgic, experience for an entire community of gamers.
+        Our goal is to focus on a combat system centered around K-Style and launch a modern game for this same community.
+    </p>
+    <h2>Dev Posts</h2>
+    {% for post in posts if post.project == 'TDR' %}
+        {% include '_post.html' %}
+    {% endfor %}
+{% endblock %}
